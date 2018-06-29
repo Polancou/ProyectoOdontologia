@@ -23,31 +23,38 @@
 
                             <p:wizard>
 
-<!--                                <p:tab id="Datos_Paciente" title="Datos Personales">
+                                <p:tab id="Datos_Paciente" title="Datos Personales">
                                     <ui:include src="svg/Paciente.xhtml" />
+                                    <p:spacer/>
                                 </p:tab>
 
                                 <p:tab id="Cuestionario" title="Cuestionario">
-                                    
-                                        <ui:include src="svg/Cuestionario.xhtml"/>
+                                    <ui:include src="svg/Cuestionario.xhtml"/>
+                                    <p:spacer/>
                                 </p:tab>
 
                                 <p:tab id="Examen_Orofacial" title="Examen Orofacial">
-                                        <ui:include src="svg/ExaOrofacial.xhtml"/>
+                                    <ui:include src="svg/ExaOrofacial.xhtml"/>
+                                    <p:spacer/>
                                 </p:tab>
-                                
+
                                 <p:tab id="odonto" title="Control de placa">
-                                        <ui:include src="svg/ControlPlaca.xhtml"/>
+                                    <ui:include src="svg/ControlPlaca.xhtml"/>
+                                    <p:spacer/>
                                 </p:tab>
-                                
+
                                 <p:tab id="periodonto" title="Periodontograma">
                                     <ui:include src="svg/Periodontograma.xhtml"/>
-                                    <p:commandButton value="Submit" actionListener="#{ExamenOrofacial.guardar()}" update="growl" process="@this"/>
-                                   
+                                    <p:spacer/><p:spacer/><p:panelGrid class="panelGridCenter">
+                                        <h:panelGrid class="panelGridCenter">
+                                            <p:commandButton value="Agregar nuevo paciente al sistema" actionListener="#{ExamenOrofacial.guardar()}" update="growl" process="@this"/>
+                                        </h:panelGrid>
+                                    </p:panelGrid><p:spacer/><p:spacer/>
                                 </p:tab>
-                                -->
+
                                 <p:tab id="consentimiento" title="Consentimiento">
                                     <ui:include src="svg/consentimiento.xhtml"/>
+                                    <p:spacer/><p:spacer/>
                                 </p:tab>
 
                             </p:wizard>

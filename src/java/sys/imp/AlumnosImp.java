@@ -81,8 +81,8 @@ public class AlumnosImp implements daoAlumnos {
                 if (users.getContraseña().equals(contraEncriptada) && users.getUsuario().equals(loguin.getUsuario())) {
                     System.out.println("Existe\nMatricula del alumno es: " + users.getMatricula());
                     sessionUsuario.setAttribute("idSesion", users.getMatricula());
-                    sessionUsuario.setAttribute("nombreCompletoAlumno",users.getNombre()+" "+users.getApellidoMaterno()
-                    +" "+users.getApellidoPaterno());
+                    sessionUsuario.setAttribute("nombreCompletoAlumno",users.getNombre()+" "+users.getApellidoPaterno()
+                    +" "+users.getApellidoMaterno());
                     usuario = true;
                 }
             }

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+          
+    
+    <p:panelGrid columns="2" layout="grid">
+        <p:panelGrid columns="2" layout="grid">
+            <p:outputLabel value="Dolor"/>
+            <p:selectOneRadio id="dolorexaoral" value="#{ExamenOrofacial.examenOral.dolor}">
+                <f:selectItem itemLabel="Si" itemValue="Si"/>
+                <f:selectItem itemLabel="No" itemValue="No"/>
+            </p:selectOneRadio>
+                <p:outputLabel value="Organo dentario "/>
+                <p:inputText id="organodentario" value="#{ExamenOrofacial.examenOral.dolor_organo}"/>
+                <p:outputLabel value="Duración"/>
+                <p:calendar id="duracion" value="#{ExamenOrofacial.examenOral.dolor_duracion}" pattern="HH:mm:ss" timeOnly="true"  />
+            <p:outputLabel value="Ubicación"/>
+            <p:panelGrid >
+                <p:selectOneRadio id="ubicacion" value="#{ExamenOrofacial.examenOral.dolor_ubicacion}">
+                    <f:selectItem itemLabel="Difuso" itemValue="Difuso" />
+                    <f:selectItem itemLabel="Localizado" itemValue="Localizado" />
+                </p:selectOneRadio>
+            </p:panelGrid>
+            <p:outputLabel value="Estímulo"/>
+            <p:selectOneRadio id="estimulo" value="#{ExamenOrofacial.examenOral.dolor_estimulo}" layout="pageDirection">
+                <f:selectItem itemLabel="Frío" itemValue="Frio" />
+                <f:selectItem itemLabel="Calor" itemValue="Calor" />
+                <f:selectItem itemLabel="Ácido" itemValue="Acido" />
+                <f:selectItem itemLabel="Dulce" itemValue="Dulce" />
+                <f:selectItem itemLabel="Masticación" itemValue="Masticacion" />
+            </p:selectOneRadio>                                    
+        </p:panelGrid>  
+        <p:panelGrid columns="2" layout="grid">
+            <p:outputLabel value="Lesión pulpar"/>
+            <p:inputText id="otralesionpulpar" value="#{ExamenOrofacial.examenOral.lesion_pulpar}" />
+            <p:outputLabel value="Exposición pulpar"/>
+            <p:inputText id="otraexposicionpulpar" value="#{ExamenOrofacial.examenOral.exposicion_pulpar}"/>
+            <p:outputLabel value="Inflamación"/>
+            <p:selectOneRadio value="#{ExamenOrofacial.examenOral.inflamacion}" layout="pageDirection">
+                <f:selectItem itemLabel="Extraoral" itemValue="Extraoral"/>
+                <f:selectItem itemLabel="Intraoral" itemValue="Intraoral"/>
+                <f:selectItem itemLabel="Endurecida" itemValue="Endurecida"/>
+                <f:selectItem itemLabel="Blanda" itemValue="Blanda"/>
+                <f:selectItem itemLabel="Nódulos linfáticos" itemValue="Nodulos_linfaticos"/>
+                <f:selectItem itemLabel="Fístula" itemValue="Fistula"/>
+            </p:selectOneRadio>
+        </p:panelGrid>
+        <p:panel>
+            <p:outputLabel value="Pruebas de sensibilidad térmica"/>
+            <p:panelGrid layout="grid" columns="2">
+                <p:outputLabel value="Pruebas en frío"/><br></br>
+                <h:outputText value="Organo dentario testigo "/>
+                <p:inputText id="organofrio" value="#{ExamenOrofacial.examenOral.frio_organo}"/>
+                <p:selectOneRadio id="pruebasfrio" value="#{ExamenOrofacial.examenOral.frio_estado}" layout="pageDirection">
+                    <f:selectItem itemLabel="Normal" itemValue="Normal"/>
+                    <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
+                    <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>
+                    <f:selectItem itemLabel="Persistente" itemValue="Persistente"/>
+                    <f:selectItem itemLabel="Incremento" itemValue="Incremento"/>
+                    <f:selectItem itemLabel="Irradiado" itemValue="Irradiado"/>
+                    <f:selectItem itemLabel="Decremento" itemValue="Decremento"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+            <p:panelGrid layout="grid" columns="2">
+                <p:outputLabel value="Pruebas en calor"/><br></br>
+                <h:outputText value="Organo dentario testigo "/>
+                <p:inputText id="organocalor" value="#{ExamenOrofacial.examenOral.calor_organo}"/>
+                <p:selectOneRadio id="pruebascalor" value="#{ExamenOrofacial.examenOral.calor_estado}" layout="pageDirection">
+                    <f:selectItem itemLabel="Normal" itemValue="Normal"/>
+                    <f:selectItem itemLabel="Fugaz" itemValue="Fugaz"/>
+                    <f:selectItem itemLabel="Ninguno" itemValue="Ninguno"/>
+                    <f:selectItem itemLabel="Persistente" itemValue="Persistente"/>
+                    <f:selectItem itemLabel="Incremento" itemValue="Incremento"/>
+                    <f:selectItem itemLabel="Irradiado" itemValue="Irradiado"/>
+                    <f:selectItem itemLabel="Decremento" itemValue="Decremento"/>
+                </p:selectOneRadio>
+            </p:panelGrid>
+        </p:panel>
+        <p:panel>
+            <p:outputLabel value="Pruebas de sensibilidad periodontal"/>
+            <p:panelGrid columns="2" layout="grid">
+                <p:outputLabel value="Percusión"/><br></br>
+                <h:outputText value="Organo dentario testigo"/>
+                <p:inputText id="organopercusion" value="#{ExamenOrofacial.examenOral.percusion_organo}"/>
+                <p:outputLabel value="Vertical (++ / --)"/>
+                <p:inputText id="vertical" value="#{ExamenOrofacial.examenOral.percusion_vertical}"/>
+                <p:outputLabel value="Horizontal (++ / --)"/>
+                <p:inputText id="horizontal" value="#{ExamenOrofacial.examenOral.percusion_horizontal}"/>
+                <p:outputLabel value="Palpación (++ / --)" />
+                <p:inputText id="palpacion" value="#{ExamenOrofacial.examenOral.percusion_palpacion}"/>
+            </p:panelGrid>
+        </p:panel>
+    </p:panelGrid>
+</html>
+        
+

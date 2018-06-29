@@ -7,20 +7,12 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <p:growl id="mensajesConsentimiento" autoUpdate="true" showDetail="true" life="3000"/>
 
-    <p:panel header="Consentimiento">
-        <h:panelGrid columns="2" cellpadding="5">
-            <p:panel header="Hoja de consentimiento del paciente">
-                <p:growl id="mensajeConsentimiento" autoUpdate="true" showDetail="true" life="3000"/>
-                <h:panelGrid columns="1" class="panelGridCenter" cellpadding="5">
-
-                    <p:commandButton  value="Generar hoja de consentimiento" action="#{beanReportes.consentimientoPDF(beanReportes.profe)}" ajax="false" />
-            
-
-                </h:panelGrid>
-            </p:panel>
-        </h:panelGrid>
-
-
+    <p:panel header="">
+        <p:panelGrid class="panelGridCenter">
+            <h:panelGrid class="panelGridCenter">
+                <p:spacer/><p:commandButton  value="Generar hoja de consentimiento" action="#{beanReportes.consentimientoPDF(DatosPersonales.paciente.nombre)}" ajax="false" />
+            </h:panelGrid><p:spacer/>
+        </p:panelGrid>
     </p:panel>
 
 </html>

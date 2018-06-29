@@ -41,7 +41,7 @@ public class Paciente  implements java.io.Serializable {
 
     public Paciente() {
     }
-
+    
     public Paciente(int direccionPaciente, int medico, int trabajoPaciente, String folio, String nombre, int edad, String sexo, Date fechaNacim, String telefono, String ocupacion, String estatura, String peso, String estadoCivil, String nivelEstudios, String estadoSalud, String porqueSolicita, String observaciones, Date fechaRegistro) {
         this.direccionPaciente = direccionPaciente;
         this.medico = medico;

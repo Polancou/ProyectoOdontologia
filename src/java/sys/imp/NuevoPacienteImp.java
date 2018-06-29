@@ -16,14 +16,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import sys.bean.Bita.beanReportes;
 import sys.bean.Expi.BeanControlPlaca;
-import static sys.bean.Expi.BeanControlPlaca.prueba;
 import sys.bean.Expi.BeanCuestionario;
 import static sys.bean.Expi.BeanCuestionario.alergias;
 import static sys.bean.Expi.BeanCuestionario.selectedConsoles;
 import sys.bean.Expi.BeanDatosPersonales;
 import sys.bean.Expi.BeanExaOrofacial;
 import sys.bean.Expi.BeanPeri;
-import static sys.bean.Expi.BeanPeri.pruebaperi;
 import sys.dao.daoNuevoPaciente;
 import sys.model.pacientes.AnalisisOclusion;
 import sys.model.pacientes.Atm;
@@ -50,8 +48,7 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
         String inserto = "";
         Session session = null;
         try {
-            
-            //primera pestaña del paciente
+            //primera pestaÃ±a del paciente
             DireccionPaciente direccion = BeanDatosPersonales.dirreccionPaciente;
             MedicoPaciente medico = BeanDatosPersonales.medico;
             TrabajoPaciente trabajo = BeanDatosPersonales.trabajoPaciente;
@@ -67,14 +64,14 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
             paciente.setFechaRegistro(new Date());
             session.save(paciente);
             
-            //segunda pestaña del cuestionario
+            //segunda pestaÃ±a del cuestionario
             PreguntasPaciente preguntas = BeanCuestionario.preguntasPaciente;
             preguntas.setPadecimientos(Arrays.toString(selectedConsoles));
             preguntas.setAlergiasMedicamentos(Arrays.toString(alergias));
             preguntas.setPaciente(paciente.getId());
             session.save(preguntas);
             
-            //tercera pestaña de examenes oral y orofacial
+            //tercera pestaÃ±a de examenes oral y orofacial
             ExamenOral examenoral= BeanExaOrofacial.examenOral;
             ExamenOrofacial examen = BeanExaOrofacial.examenOrofacial;
             Atm atm = BeanExaOrofacial.atm;
@@ -95,8 +92,8 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
             //insertar la placa dentobacteriana
             ControlPlaca control = BeanControlPlaca.control;
             control.setEstado("nuevo");
-            System.out.println(prueba.getDiente());
-            control.setDientes(prueba.getDiente());
+            System.out.println(control.getDientes());
+            control.setDientes(control.getDientes());
             control.setPaciente(paciente.getId());
             session.save(control);
             
@@ -105,7 +102,7 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
             Periodontograma periodonto = BeanPeri.periodonto;
             periodonto.setEstado("nuevo");
             periodonto.setPaciente(paciente.getId());
-            periodonto.setDientes(pruebaperi.getDiente());
+            periodonto.setDientes(periodonto.getDientes());
             session.save(periodonto);
             
             

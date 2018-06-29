@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -36,8 +37,9 @@ import sys.model.pacientes.Paciente;
 @RequestScoped
 public class beanReportes implements Serializable {
 
-   private final String myDatePattern1 = "yyyy-MM-dd";
-   private final SimpleDateFormat df = new SimpleDateFormat(myDatePattern1);
+    private final String myDatePattern1 = "yyyy-MM-dd";
+    private final SimpleDateFormat df = new SimpleDateFormat(myDatePattern1);
+
     /**
      * @return the clinica
      */
@@ -80,15 +82,7 @@ public class beanReportes implements Serializable {
         this.fecha2 = fecha2;
     }
 
-    public String getProfe() {
-        return profe;
-    }
-
-    public void setProfe(String profe) {
-        this.profe = profe;
-    }
-
-    private String clinica,profe;
+    private String clinica;
     private Date fecha1;
     private Date fecha2;
 
@@ -120,17 +114,16 @@ public class beanReportes implements Serializable {
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
         System.out.print("+++++ " + fecha1 + " +++++ " + fecha2 + " ++++++ " + clinica);
-        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Clinica " + clinica + " desde el "+df.format(fecha1)+" hasta el "+df.format(fecha2), parametros);
+        exportarPDF("/resources/ReportesPDF/porClinica.jasper", "Clinica " + clinica + " desde el " + df.format(fecha1) + " hasta el " + df.format(fecha2), parametros);
     }
 
     public void alumnosDestacados5() throws SQLException, IOException, JRException {
-        Map <String,Object> parametros = new HashMap<String, Object>();
+        Map<String, Object> parametros = new HashMap<String, Object>();
         parametros.put("fecha1", df.format(fecha1));
         parametros.put("fecha2", df.format(fecha2));
-        System.out.print("+++++ "+fecha1+" +++++ "+fecha2+" ++++++ ");
-        exportarPDF("/resources/ReportesPDF/alumno.jasper","Alumnos-destacados-de-todas-las-clinicas",  parametros);        
+        System.out.print("+++++ " + fecha1 + " +++++ " + fecha2 + " ++++++ ");
+        exportarPDF("/resources/ReportesPDF/alumno.jasper", "Alumnos-destacados-de-todas-las-clinicas", parametros);
     }
-
 
     private void exportarPDF(String rutaArchivo, String nombreArchivo, Map parametros) throws SQLException, IOException, JRException {
         //Map <String,Object> parametros = new HashMap<String, Object>();
@@ -147,17 +140,15 @@ public class beanReportes implements Serializable {
         FacesContext.getCurrentInstance().responseComplete();
     }
 
-    public void consentimientoPDF(String paciente) throws SQLException, IOException, JRException{
+    public void consentimientoPDF(String paciente) throws SQLException, IOException, JRException  {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        String nombreAlum=(String) session.getAttribute("nombreCompletoAlumno");
-        System.out.println("Nombre del alumno "+nombreAlum);
-        Map <String,Object> parametros = new HashMap<String, Object>();
-        System.out.println("Nombre del paciente "+paciente);
-        parametros.put("paciente", paciente );
-        parametros.put("maestro", getProfe());
+        String nombreAlum = (String) session.getAttribute("nombreCompletoAlumno");
+        Map<String, Object> parametros = new HashMap<String, Object>();
+        String profe = BeanDatosPersonales.profe;
+        parametros.put("paciente", paciente);
+        parametros.put("maestro", profe);
         parametros.put("alumno", nombreAlum);
-        exportarPDF("/resources/ReportesPDF/Consentimiento.jasper","Consentimiento_del_paciente",  parametros);        
-    
+        exportarPDF("/resources/ReportesPDF/Consentimiento.jasper", "Consentimiento_del_paciente", parametros);
     }
-    
+
 }

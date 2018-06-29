@@ -12,6 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import sys.dao.daoConsultaPaciente;
+import sys.imp.ConsultaPacienteImp;
 import sys.model.pacientes.Periodontograma;
 /**
  *
@@ -21,7 +23,7 @@ import sys.model.pacientes.Periodontograma;
 @ViewScoped
 public class BeanPeri implements Serializable  {
     private String dienteimg;
-    public static TestPeri pruebaperi = new TestPeri();
+    private String dienteBD;
     public static Periodontograma periodonto;
     
     /**
@@ -29,35 +31,46 @@ public class BeanPeri implements Serializable  {
      */
     @PostConstruct
     public void init(){
-        String cadena= "svg/11-18/18.png,svg/11-18/17.png,svg/11-18/16.png,svg/11-18/15.png,svg/11-18/14.png,svg/11-18/13.png,svg/11-18/12.png,svg/11-18/11.png,svg/21-28/21.png,svg/21-28/22.png,svg/21-28/23.png,svg/21-28/24.png,svg/21-28/25.png,svg/21-28/26.png,svg/21-28/27.png,svg/21-28/28.png,svg/51-55/55.png,svg/51-55/54.png,svg/51-55/53.png,svg/51-55/52.png,svg/51-55/51.png,svg/61-65/61.png,svg/61-65/62.png,svg/61-65/63.png,svg/61-65/64.png,svg/61-65/65.png,svg/81-85/85.png,svg/81-85/84.png,svg/81-85/83.png,svg/81-85/82.png,svg/81-85/81.png,svg/71-75/71.png,svg/71-75/72.png,svg/71-75/73.png,svg/71-75/74.png,svg/71-75/75.png,svg/41-48/48.png,svg/41-48/47.png,svg/41-48/46.png,svg/41-48/45.png,svg/41-48/44.png,svg/41-48/43.png,svg/41-48/42.png,svg/41-48/41.png,svg/31-38/31.png,svg/31-38/32.png,svg/31-38/33.png,svg/31-38/34.png,svg/31-38/35.png,svg/31-38/36.png,svg/31-38/37.png,svg/31-38/38.png";
-        String dienteperi = pruebaperi.getDiente();
-        if (dienteperi == "0"){
-            System.out.println("valor inicial:");
-            pruebaperi.setDiente(cadena);
-        }else{
-            System.out.println("cargo los valores");
-            pruebaperi.setDiente(dienteperi);
+        String cadena = "svg/dientes/18.png,svg/dientes/17.png,svg/dientes/16.png,svg/dientes/15.png,svg/dientes/14.png,svg/dientes/13.png,svg/dientes/12.png,svg/dientes/11.png,svg/dientes/21.png,svg/dientes/22.png,svg/dientes/23.png,svg/dientes/24.png,svg/dientes/25.png,svg/dientes/26.png,svg/dientes/27.png,svg/dientes/28.png,svg/dientes/55.png,svg/dientes/54.png,svg/dientes/53.png,svg/dientes/52.png,svg/dientes/51.png,svg/dientes/61.png,svg/dientes/62.png,svg/dientes/63.png,svg/dientes/64.png,svg/dientes/65.png,svg/dientes/85.png,svg/dientes/84.png,svg/dientes/83.png,svg/dientes/82.png,svg/dientes/81.png,svg/dientes/71.png,svg/dientes/72.png,svg/dientes/73.png,svg/dientes/74.png,svg/dientes/75.png,svg/dientes/48.png,svg/dientes/47.png,svg/dientes/46.png,svg/dientes/45.png,svg/dientes/44.png,svg/dientes/43.png,svg/dientes/42.png,svg/dientes/41.png,svg/dientes/31.png,svg/dientes/32.png,svg/dientes/33.png,svg/dientes/34.png,svg/dientes/35.png,svg/dientes/36.png,svg/dientes/37.png,svg/dientes/38.png";
+        String dienteperi = periodonto.getDientes();
+        if (dienteperi == null){
+            periodonto.setDientes(cadena);
         }
+    
+    }
+    
+    public Periodontograma getPeriodontograma(){
+        return periodonto;
     }
     
     public BeanPeri() {
-        periodonto=new Periodontograma();
+        periodonto = new Periodontograma();
+    }
+
+    public String getDienteBD() {
+        daoConsultaPaciente bdao = new ConsultaPacienteImp();
+        String dientes = bdao.verPeriodontograma();
+        this.dienteBD=dientes;
+        return dienteBD;
+    }
+
+    public void setDienteBD(String dienteBD) {
+        this.dienteBD = dienteBD;
     }
     
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Odontograma se guardó con éxito da click en siguiente para continuar", "")); 
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Odontograma se guardÃ³ con Ã©xito da click en siguiente para continuar", "")); 
     }
     
     public void Obtienetodo(){
         String nuevotexto = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nuevotexto");
-        pruebaperi.setDiente(nuevotexto);
+        periodonto.setDientes(nuevotexto);
     }
 
     /**
      * @return the dienteimg
      */
     public String getDienteimg() {
-        dienteimg = pruebaperi.getDiente();
         return dienteimg;
     }
 
@@ -68,18 +81,5 @@ public class BeanPeri implements Serializable  {
         this.dienteimg = dienteimg;
     }
 
-    /**
-     * @return the pruebaperi
-     */
-    public TestPeri getPruebaperi() {
-        return pruebaperi;
-    }
-
-    /**
-     * @param pruebaperi the pruebaperi to set
-     */
-    public void setPruebaperi(TestPeri pruebaperi) {
-        this.pruebaperi = pruebaperi;
-    }
     
 }

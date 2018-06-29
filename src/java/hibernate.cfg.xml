@@ -74,5 +74,6 @@ Contributor(s):
     <mapping class="sys.model.pacientes.Tratamientos"/>
     <mapping class="sys.model.pacientes.ControlPlaca"/>
     <mapping class="sys.model.pacientes.Periodontograma"/>
+    <mapping class="sys.model.pacientes.Consultas"/>
   </session-factory>
 </hibernate-configuration>

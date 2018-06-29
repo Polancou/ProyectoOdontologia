@@ -5,6 +5,7 @@
  */
 package sys.model.pacientes;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "control_placa")
-public class ControlPlaca {
+public class ControlPlaca implements Serializable {
     
     private int id,paciente;
     private String estado, numDientes,numSuperficies,superficiesPlacas,extensionPlaca,dientes;

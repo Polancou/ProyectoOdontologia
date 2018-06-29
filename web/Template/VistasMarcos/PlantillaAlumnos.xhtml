@@ -21,6 +21,7 @@
         <h:outputScript name="/Estilos/js/demo.js"/>      
         <h:outputScript name="/Estilos/js/adminlte.min.js"/>
         <h:outputScript name="/Estilos/dist/js/app.min.js"/>
+        
     </h:head>
 
     <h:body class="hold-transition skin-blue sidebar-mini">
@@ -53,14 +54,14 @@
                                         <!-- Menu Toggle Button -->
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             <!-- The user image in the navbar-->
-                                            <h:graphicImage library="images" name="men.png" class="user-image" alt="User Image"/>
+                                            <h:graphicImage library="images" name="BITA.png" class="user-image" alt="User Image"/>
                                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                             <h:outputText value="#{session.getAttribute('tokenAlumno')}" />
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- The user image in the menu -->
                                             <li class="user-header">
-                                                <h:graphicImage library="images" name="men.png" class="img-circle" alt="User Image"/>
+                                                <h:graphicImage library="images" name="fdo.png" class="img-circle" alt="User Image"/>
 
                                             </li>
                                             <!-- Menu Body -->
@@ -118,10 +119,7 @@
                                                                 <p:spacer/><p:spacer/> 
                                                                 <p:commandButton value="Guardar" actionListener="#{beanAlumnos.editar()}"  
                                                                                  oncomplete="PF('dlgNuevo').hide();" update=":formEditarPerfil"/>
-                                                                <p:commandButton value="Cancelar" action="#"
-                                                                                 update=":formEditarPerfil" immediate="true" 
-                                                                                 onclick="PF('dlgNuevo').hide();" /> 
-
+                                                                
                                                             </h:panelGrid>
                                                         </h:form>
                                                     </p:dialog>
@@ -160,19 +158,19 @@
                                     <div class="pull-left info">
                                         <p>Alumno</p>
                                         <!-- Status -->
-                                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+<!--                                    <a href="#"><i class="fa fa-circle text-success"></i>Online</a>-->
                                     </div>
                                 </div>
 
                                 <!-- search form (Optional) -->
-                                <form action="#" method="get" class="sidebar-form">
+<!--                                <form action="#" method="get" class="sidebar-form">
                                     <div class="input-group">
                                         <input type="text" name="q" class="form-control" placeholder="Search..."/>
                                         <span class="input-group-btn">
                                             <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                                         </span>
                                     </div>
-                                </form>
+                                </form>-->
                                 <!-- /.search form -->
 
                                 <!-- Sidebar Menu -->
@@ -200,7 +198,7 @@
                                         </a>
                                         <ul class="treeview-menu">
                                             <li><a href="NuevoPaciente.xhtml">Nuevo paciente</a></li>
-                                            <li><a href="#">Consulta subsecuente</a></li>
+                                            <li><a href="Consultas.xhtml">Consulta subsecuente</a></li>
                                         </ul>
                                     </li>
 
@@ -232,7 +230,7 @@
                             Prohibida la reproducción, alteración y violación de datos.
                         </div>
                         <!-- Default to the left -->
-                        <strong>Copyright 2017 <a href="http://fi.uacam.mx/">Facultad Ingeniería. Universidad Autónoma de Campeche</a>.</strong> All rights reserved.
+                        <strong>Copyright 2017 <a href="http://fi.uacam.mx/">Facultad Ingeniería.</a><a href="http://uacam.mx/">Universidad Autónoma de Campeche.</a></strong> All rights reserved.
                     </footer>
                 </ui:insert>
             </div>

@@ -7,11 +7,15 @@ package sys.bean.Expi;
 
 import sys.model.pacientes.Test;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import sys.dao.daoConsultaPaciente;
+import sys.imp.ConsultaPacienteImp;
+import sys.model.pacientes.Consultas;
 import sys.model.pacientes.ControlPlaca;
 
 /**
@@ -27,6 +31,7 @@ public class BeanControlPlaca implements Serializable {
     private String numsuperficies;
     private String extensionplaca;
     private String diente;
+    private String dienteBD;
     public static ControlPlaca control;
 
     public ControlPlaca getControl() {
@@ -49,7 +54,6 @@ public class BeanControlPlaca implements Serializable {
     public void setControl(ControlPlaca control) {
         this.control = control;
     }
-    public static Test prueba = new Test();
 
     /**
      * Creates a new instance of NuevoBean
@@ -57,29 +61,38 @@ public class BeanControlPlaca implements Serializable {
     @PostConstruct
     public void init() {
         String cadena = "#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff,#ffffff";
-        String dienteval = prueba.getDiente();
-        if (dienteval == "0"){
-            prueba.setDiente(cadena);
-        }else{
-            prueba.setDiente(dienteval);
+        String dienteval = control.getDientes();
+        if (dienteval == null){
+            control.setDientes(cadena);
         }
     }
      public void Obtienetodo() {
          
         String nuevotexto = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nuevotexto");
         System.out.println(nuevotexto);
-        prueba.setDiente(nuevotexto);
+        control.setDientes(nuevotexto);
     }
      
     public void info() {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Control de placa se guardó con éxito da click en siguiente para continuar", "")); 
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "El Control de placa se guardÃ³ con Ã©xito da click en siguiente para continuar", "")); 
+    }
+
+    public String getDienteBD() {
+        //hacer la consulta a la BD con la fecha
+        daoConsultaPaciente bdao = new ConsultaPacienteImp();
+        String dientes = bdao.verPlaca();
+        this.dienteBD=dientes;
+        return dienteBD;
+    }
+
+    public void setDienteBD(String dienteBD) {
+        this.dienteBD = dienteBD;
     }
 
     /**
      * @return the diente
      */
     public String getDiente() {
-        diente = prueba.getDiente();
         return diente;
     }
 
@@ -90,19 +103,7 @@ public class BeanControlPlaca implements Serializable {
         this.diente = diente;
     }
 
-    /**
-     * @return the prueba
-     */
-    public Test getPrueba() {
-        return prueba;
-    }
-
-    /**
-     * @param prueba the prueba to set
-     */
-    public void setPrueba(Test prueba) {
-        this.prueba = prueba;
-    }
+   
 
     /**
      * @return the numdientes

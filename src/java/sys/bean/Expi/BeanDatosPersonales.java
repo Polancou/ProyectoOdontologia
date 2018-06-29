@@ -26,6 +26,7 @@ public class BeanDatosPersonales implements Serializable {
     public static MedicoPaciente medico;
     public static TrabajoPaciente trabajoPaciente;
     public static Paciente paciente;
+    public static String profe;
 
     @PostConstruct
     protected void init() {
@@ -36,8 +37,17 @@ public class BeanDatosPersonales implements Serializable {
     public BeanDatosPersonales() {
         dirreccionPaciente = new DireccionPaciente();
         medico = new MedicoPaciente();
+        profe = new String();
         trabajoPaciente = new TrabajoPaciente();
         paciente = new Paciente();
+    }
+
+    public String getProfe() {
+        return profe;
+    }
+
+    public void setProfe(String profe) {
+        this.profe = profe;
     }
 
     public DireccionPaciente getDirreccionPaciente() {

@@ -22,9 +22,9 @@
                 <p:fieldset id="fieldLogin" style="text-align: center; margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel for="nomeUsuario" value="Usuario: " />
-                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.user}" />
+                        <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.user}" required="true" requiredMessage="Nombre de usuario es obligatorio" />
                         <p:outputLabel id="senha" value="Contraseña:"/>
-                        <p:password id="senhaUsuario" value="#{LoginMB.usuario.contraseña}" />
+                        <p:password id="senhaUsuario" value="#{LoginMB.usuario.contraseña}" required="true" requiredMessage="Contraseña es obligatorio"/>
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:commandButton value="Ingresar al portal" action="#{LoginMB.login(actionEvent)}" ajax="false" />
@@ -40,11 +40,11 @@
                 <h:form id="formNuevoDocente">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel value="Numero de empleado:"/>
-                        <p:inputText id="id" value="#{LoginMB.maestro.idEmpleado}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:inputText id="id" value="#{LoginMB.maestro.idEmpleado}" required="true" requiredMessage="Número de empleado es obligatorio"/>
                         <p:outputLabel value="Usuario:"/>
-                        <p:inputText id="user" value="#{LoginMB.usuario.user}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:inputText id="user" value="#{LoginMB.usuario.user}" required="true" requiredMessage="Usuario es obligatorio"/>
                         <p:outputLabel value="Contraseña:"/>
-                        <p:password id="pass" value="#{LoginMB.usuario.contraseña}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:password id="pass" value="#{LoginMB.usuario.contraseña}" required="true" requiredMessage="Contraseña es obligatorio"/>
                         <p:spacer></p:spacer>
                         <p:spacer></p:spacer>
                         <f:facet name="footer" >
@@ -59,11 +59,11 @@
                 <h:form id="formNuevoFarmacia">
                     <h:panelGrid columns="2" cellpadding="5" >
                         <p:outputLabel value="Numero de empleado:"/>
-                        <p:inputText id="id" value="#{LoginMB.encargada.idEmpleado}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:inputText id="id" value="#{LoginMB.encargada.idEmpleado}" required="true" requiredMessage="Número de empleado es obligatorio"/>
                         <p:outputLabel value="Usuario:"/>
-                        <p:inputText id="user" value="#{LoginMB.usuario.user}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:inputText id="user" value="#{LoginMB.usuario.user}" required="true" requiredMessage="Usuario es obligatorio"/>
                         <p:outputLabel value="Contraseña:"/>
-                        <p:password id="pass" value="#{LoginMB.usuario.contraseña}" required="true" requiredMessage="Tratamiento es obligatorio"/>
+                        <p:password id="pass" value="#{LoginMB.usuario.contraseña}" required="true" requiredMessage="Contraseña es obligatorio"/>
                         <p:spacer></p:spacer>
                         <p:spacer></p:spacer>
                         <f:facet name="footer" >

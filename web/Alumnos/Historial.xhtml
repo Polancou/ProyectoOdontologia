@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
+
+            <ui:define name="content">
+
+                <div class="content-wrapper">
+
+                    <!-- Main content -->
+                    <section class="content">
+
+                        <h:form>
+
+                            <p:dataTable id="dataTable" var="pacientes" value="#{ConsultaPaciente.consulta}"
+                                        emptyMessage="No hay datos" paginator="true" rows="10">
+                                <p:column style="text-align: center;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Fecha de consulta" />
+                                    </f:facet>
+                                    <h:outputText value="#{pacientes.fecha}" />
+                                </p:column>
+
+                                <p:column style="text-align: center;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Control de placa" />
+                                    </f:facet>
+                                    <p:commandButton value="Ver Placa" action="#{ConsultaPaciente.verControlPlaca(pacientes.controlPlaca)}" class="btn btn-info"></p:commandButton>
+                                </p:column>
+
+                                <p:column style="text-align: center;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Periodontograma" />
+                                    </f:facet>
+                                    <p:commandButton value="Ver Periodontograma" action="#{ConsultaPaciente.verPeriodontograma(pacientes.periodonto)}" class="btn btn-info"></p:commandButton>
+                                </p:column>
+
+                            </p:dataTable>
+
+
+                        </h:form>
+
+                    </section>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
