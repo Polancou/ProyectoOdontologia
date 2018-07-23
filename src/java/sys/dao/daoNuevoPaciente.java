@@ -6,6 +6,20 @@
 package sys.dao;
 //
 //import sys.model.pacientes.AnalisisOclusion;
+
+import sys.model.pacientes.AnalisisOclusion;
+import sys.model.pacientes.Atm;
+import sys.model.pacientes.ControlPlaca;
+import sys.model.pacientes.DireccionPaciente;
+import sys.model.pacientes.ExamenOral;
+import sys.model.pacientes.ExamenOrofacial;
+import sys.model.pacientes.HallazgosRadiograficos;
+import sys.model.pacientes.MedicoPaciente;
+import sys.model.pacientes.Paciente;
+import sys.model.pacientes.Periodontograma;
+import sys.model.pacientes.PreguntasPaciente;
+import sys.model.pacientes.TrabajoPaciente;
+
 //import sys.model.pacientes.Atm;
 //import sys.model.pacientes.DireccionPaciente;
 //import sys.model.pacientes.ExamenOral;
@@ -32,6 +46,6 @@ public interface daoNuevoPaciente {
 //    
 //    public boolean pdfConsentimiento();
     
-    public String insertarNuevoPaciente();
+    public boolean insertarNuevoPaciente(DireccionPaciente direccion,MedicoPaciente medico,TrabajoPaciente trabajo, Paciente paciente, ControlPlaca control,Periodontograma periodonto,ExamenOral examenoral, ExamenOrofacial examen,Atm atm,AnalisisOclusion analisis,HallazgosRadiograficos hallazgos,PreguntasPaciente preguntas);
     
 }

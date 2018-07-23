@@ -28,7 +28,7 @@
                 } else if (document.getElementById('obtucaries').checked) {
                     var img = "svg/dientes/" +  dientestr + "oc.png";
                     espacio.setAttribute("src", nuecadena+img);
-                } 
+                }
                 SaveDientes();
             };
         </script>
@@ -37,7 +37,7 @@
                 boton.setAttribute('style','display: none');
                 var standard = "/FdO-3.0/pages/javax.faces.resource/";
                 $( ".oculto" ).css( "display", "block" );
-                var textobase = "#{BeanNuevoPaciente.periodonto.dientes}";
+                var textobase = "#{ConsultaPaciente.periodontograma.dientes}";
                 var arreglobase = textobase.split(",");
                 var seteadiente18 = document.getElementsByClassName("dienteimg");
                 var qwe = [];
@@ -90,7 +90,9 @@
                display: none;
             }
         </style>
-        <p:remoteCommand name="Enviaimg" action="#{BeanNuevoPaciente.Obtienetodo}" process="@this"/>
+        <p:remoteCommand name="Enviaimg" action="#{ConsultaPaciente.Obtienetodo}" process="@this"/>
+        <h4>Número de folio: <b>#{ConsultaPaciente.paciente.folio}</b></h4>
+        <h4>Nueva consulta para: <b>#{ConsultaPaciente.paciente.nombre}</b></h4>
         <p:panelGrid class="panelGridCenter">
 
             <h:panelGrid class="panelGridCenter" cellspacing="5">
@@ -125,8 +127,7 @@
                 <p:outputLabel value="1) Da click en el botón ''Mostrar Periodontograma'' para iniciar."/>
                 <p:outputLabel value="2) Selecciona una de las anteriores opciones según tu criterio y de click sobre el diente que corresponde."/>
                 <p:outputLabel value="3) Selecciona las zonas con placa."/>
-                <p:outputLabel value="4) Al finalizar, de click en el botón ''Agregar nuevo paciente al sistema''."/>
-                <p:outputLabel value="6) Continúe para generar la hoja de consentimiento e imprimirla."/>
+                <p:outputLabel value="4) Al finalizar, de click en el botón ''Guardar Nueva Consulta''."/>
                 <p:spacer/>
                 <h:panelGrid class="panelGridCenter">
                     <p:commandButton type="button" style="display: block"  value="Mostrar Periodontograma"  onclick="MostrarOdonto(this); return false;" />
@@ -256,6 +257,11 @@
                         </p:panelGrid>
                     </h:panelGrid>
                     <p:spacer/>
+                    <p:panelGrid class="panelGridCenter">
+<!--                        <h:panelGrid class="panelGridCenter">
+                            <button id="guardar" name="guardar" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="SaveDientes();" type="button" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Guardar Periodontograma</span></button>
+                        </h:panelGrid>-->
+                    </p:panelGrid>
                     <p:spacer/>
                     <p:messages id="Correct" showDetail="true" autoUpdate="true" closable="true"/>
                 </h:panelGrid>

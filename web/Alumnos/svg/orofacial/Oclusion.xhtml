@@ -9,76 +9,76 @@
    <p:panelGrid columns="2" layout="grid">
         <p:panelGrid columns="2" layout="grid">
             <h:outputLabel  value="Clasificación" />
-            <p:selectOneRadio id="clasificaion" value="#{ExamenOrofacial.analisisOclusion.clasificacion}">
+            <p:selectOneRadio id="clasificaion" value="#{BeanNuevoPaciente.analisisOclusion.clasificacion}">
                 <f:selectItem itemLabel="I" itemValue="I" />
                 <f:selectItem itemLabel="II" itemValue="II" />
                 <f:selectItem itemLabel="III" itemValue="III"/>
             </p:selectOneRadio>
             <h:outputLabel for="proteccioncanina" value="Protección canina"/>
-            <p:selectOneRadio id="proteccioncanina" value="#{ExamenOrofacial.analisisOclusion.proteccionCanina}">
+            <p:selectOneRadio id="proteccioncanina" value="#{BeanNuevoPaciente.analisisOclusion.proteccionCanina}">
                 <f:selectItem itemLabel="Izquierda" itemValue="Izquierda"/>
                 <f:selectItem itemLabel="Derecha" itemValue="Derecha"/>
             </p:selectOneRadio>
             <h:outputLabel for="proteccionanterior" value="Protección anterior"/>
-            <p:selectOneRadio id="proteccionanterior" value="#{ExamenOrofacial.analisisOclusion.proteccionAnterior}">
+            <p:selectOneRadio id="proteccionanterior" value="#{BeanNuevoPaciente.analisisOclusion.proteccionAnterior}">
                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                 <f:selectItem itemLabel="No" itemValue="No"/>
             </p:selectOneRadio>
             <h:outputLabel for="funciongrupo" value="Función de grupo"/>
-            <p:selectOneRadio id="funciongrupo" value="#{ExamenOrofacial.analisisOclusion.funcionGrupo}">
+            <p:selectOneRadio id="funciongrupo" value="#{BeanNuevoPaciente.analisisOclusion.funcionGrupo}">
                 <f:selectItem itemLabel="Izquierda" itemValue="Izquierda"/>
                 <f:selectItem itemLabel="Derecha" itemValue="Derecha"/>
             </p:selectOneRadio>
             <h:outputLabel for="proteccionmutua" value="Protección mutua"/>
-            <p:selectOneRadio id="proteccionmutua" value="#{ExamenOrofacial.analisisOclusion.proteccionMutua}">
+            <p:selectOneRadio id="proteccionmutua" value="#{BeanNuevoPaciente.analisisOclusion.proteccionMutua}">
                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                 <f:selectItem itemLabel="No" itemValue="No"/>
             </p:selectOneRadio>
             <h:outputLabel for="mordidacruzada" value="Mordida cruzada"/>
-            <p:selectOneRadio id="mordidacruzada" value="#{ExamenOrofacial.analisisOclusion.mordidaCruzada}">
+            <p:selectOneRadio id="mordidacruzada" value="#{BeanNuevoPaciente.analisisOclusion.mordidaCruzada}">
                 <f:selectItem itemLabel="Izquierda" itemValue="Izquierda"/>
                 <f:selectItem itemLabel="Derecha" itemValue="Derecha"/>
             </p:selectOneRadio>
             <h:outputLabel for="mordidaabierta" value="Mordida abierta"/>
-            <p:selectOneRadio id="mordidaabierta" value="#{ExamenOrofacial.analisisOclusion.mordidaAbierta}">
+            <p:selectOneRadio id="mordidaabierta" value="#{BeanNuevoPaciente.analisisOclusion.mordidaAbierta}">
                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                 <f:selectItem itemLabel="No" itemValue="No"/>
             </p:selectOneRadio>
             <h:outputLabel for="sobremordida" value="Sobremordida"/>
-            <p:selectOneRadio id="sobremordida" value="#{ExamenOrofacial.analisisOclusion.sobremordida}">
+            <p:selectOneRadio id="sobremordida" value="#{BeanNuevoPaciente.analisisOclusion.sobremordida}">
                 <f:selectItem itemLabel="Si" itemValue="Si"/>
                 <f:selectItem itemLabel="No" itemValue="No"/>
             </p:selectOneRadio>
         </p:panelGrid>
         <p:panel>
             <p:outputLabel value="Contacto dentario anterior en oclusión céntrica"/>
-            <p:inputText id="contactodentario" value="#{ExamenOrofacial.analisisOclusion.contactoDentatorio}"/>
+            <p:inputText id="contactodentario" value="#{BeanNuevoPaciente.analisisOclusion.contactoDentatorio}"/>
             <p></p>
             <p:outputLabel value="Relación incisal"/>
             <p:panelGrid columns="2" layout="grid">
                 <p:outputLabel value="Traslape Horizontal (mm) " />
-                <p:inputText id="traslapeH" value="#{ExamenOrofacial.analisisOclusion.incisal_horizontal}"/>
+                <p:inputText id="traslapeH" value="#{BeanNuevoPaciente.analisisOclusion.incisalHorizontal}"/>
                 <p:outputLabel value="Traslape Vertical (mm) "/>
-                <p:inputText id="traslapeV" value="#{ExamenOrofacial.analisisOclusion.incisal_vertical}"/>
+                <p:inputText id="traslapeV" value="#{BeanNuevoPaciente.analisisOclusion.incisalVertical}"/>
             </p:panelGrid>
         </p:panel>
         <p:panel>
             <p:outputLabel value="Movimiento mandibular"/>
             <p:panelGrid columns="2" layout="grid">
                 <h:outputLabel  value="Protusivo"/>
-                <p:selectOneRadio id="protusivo" value="#{ExamenOrofacial.analisisOclusion.mandibular_protusivo}" layout="pageDirection">
+                <p:selectOneRadio id="protusivo" value="#{BeanNuevoPaciente.analisisOclusion.mandibularProtusivo}" layout="pageDirection">
                     <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                     <f:selectItem itemLabel="Excesivo" itemValue="Excesivo"/>
                     <f:selectItem itemLabel="Limitado" itemValue="Limitado"/>
                 </p:selectOneRadio>
                 <h:outputLabel for="lateralderecho" value="Lateral Derecho"/>
-                <p:selectOneRadio id="lateralderecho" value="#{ExamenOrofacial.analisisOclusion.mandibular_derecho}" layout="pageDirection">
+                <p:selectOneRadio id="lateralderecho" value="#{BeanNuevoPaciente.analisisOclusion.mandibularDerecho}" layout="pageDirection">
                     <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                     <f:selectItem itemLabel="Excesivo" itemValue="Excesivo"/>
                     <f:selectItem itemLabel="Limitado" itemValue="Limitado"/>
                 </p:selectOneRadio>
                 <h:outputLabel for="lateralizquierdo" value="Lateral Izquierdo"/>
-                <p:selectOneRadio id="lateralizquierdo" value="#{ExamenOrofacial.analisisOclusion.madibular_izquierdo}" layout="pageDirection">
+                <p:selectOneRadio id="lateralizquierdo" value="#{BeanNuevoPaciente.analisisOclusion.madibularIzquierdo}" layout="pageDirection">
                     <f:selectItem itemLabel="Normal" itemValue="Normal"/>
                     <f:selectItem itemLabel="Excesivo" itemValue="Excesivo"/>
                     <f:selectItem itemLabel="Limitado" itemValue="Limitado"/>

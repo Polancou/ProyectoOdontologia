@@ -9,23 +9,23 @@
    <p:panelGrid columns="2" layout="grid">
         <p:panelGrid columns="2" layout="grid">
             <p:outputLabel value="Tipo de Rx"/>
-            <p:selectOneRadio id="tiporx" value="#{ExamenOrofacial.hallazgosRadiograficos.tipo_rx}" layout="pageDirection">
+            <p:selectOneRadio id="tiporx" value="#{BeanNuevoPaciente.hallazgosRadiograficos.tipoRx}" layout="pageDirection">
                 <f:selectItem itemLabel="Periapical" itemValue="Periapical"/>
                 <f:selectItem itemLabel="Oclusal" itemValue="Oclusal"/>
                 <f:selectItem itemLabel="Panorámica" itemValue="Panoramica"/>
             </p:selectOneRadio>
             <p:outputLabel value="Soporte óseo"/>
-            <p:inputText id="soporteoseo" value="#{ExamenOrofacial.hallazgosRadiograficos.soporte_oseo}"/>
+            <p:inputText id="soporteoseo" value="#{BeanNuevoPaciente.hallazgosRadiograficos.soporteOseo}"/>
             <p:outputLabel value="Relación corona-raíz"/>
-            <p:inputText id="corona_raiz" value="#{ExamenOrofacial.hallazgosRadiograficos.relacion_corona_raiz}"/>
+            <p:inputText id="corona_raiz" value="#{BeanNuevoPaciente.hallazgosRadiograficos.relacionCoronaRaiz}"/>
             <p:outputLabel value="Altura de roborde"/>
-            <p:inputText id="alturareborde" value="#{ExamenOrofacial.hallazgosRadiograficos.altura_reborde}"/>
+            <p:inputText id="alturareborde" value="#{BeanNuevoPaciente.hallazgosRadiograficos.alturaReborde}"/>
             <p:outputLabel value="Engrosamiento de ligamento periodontal"/>
-            <p:inputText id="engrosamiento" value="#{ExamenOrofacial.hallazgosRadiograficos.engrosamiento_ligamento_periodontal}"/>
+            <p:inputText id="engrosamiento" value="#{BeanNuevoPaciente.hallazgosRadiograficos.engrosamientoLigamentoPeriodontal}"/>
         </p:panelGrid>
         <p:panelGrid columns="2" layout="grid">
             <p:outputLabel value="Interpretación radiográfica"/>
-            <p:inputTextarea rows="5" cols="20" id="interpretacionradiograf" value="#{ExamenOrofacial.hallazgosRadiograficos.interpretacion}"/>
+            <p:inputTextarea rows="5" cols="20" id="interpretacionradiograf" value="#{BeanNuevoPaciente.hallazgosRadiograficos.interpretacion}"/>
         </p:panelGrid>
     </p:panelGrid>
 </html>

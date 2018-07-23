@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+    <body>foo = #{flash.keep.nuevopaciente}
 
         <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
 
@@ -17,9 +17,19 @@
 
                     <!-- Main content -->
                     <section class="content">
-
+                        <h:outputScript name="js/noupdate.js"/>
                         <h:form>
-
+                            
+                            <p:panel>
+                                <h:panelGrid class="panelGridCenter">
+                                    <h4>Paciente: <b>#{ConsultaPaciente.paciente.nombre}</b></h4>
+                                    <h4>Número de folio: <b>#{ConsultaPaciente.paciente.folio}</b></h4>
+                                    <p:spacer/>
+                                    <p:commandButton value="Regresar a la búsqueda" action="Consultas.xhtml" />
+                                </h:panelGrid>
+                            </p:panel>
+                            
+                            <p:spacer/>
                             <p:dataTable id="dataTable" var="pacientes" value="#{ConsultaPaciente.consulta}"
                                         emptyMessage="No hay datos" paginator="true" rows="10">
                                 <p:column style="text-align: center;">
@@ -33,14 +43,14 @@
                                     <f:facet name="header">
                                         <h:outputText value="Control de placa" />
                                     </f:facet>
-                                    <p:commandButton value="Ver Placa" action="#{ConsultaPaciente.verControlPlaca(pacientes.controlPlaca)}" class="btn btn-info"></p:commandButton>
+                                    <p:commandButton value="Ver Placa" action="#{ConsultaPaciente.verControlPlaca(pacientes.controlPlaca,pacientes.fecha)}" class="btn btn-info"></p:commandButton>
                                 </p:column>
 
                                 <p:column style="text-align: center;">
                                     <f:facet name="header">
                                         <h:outputText value="Periodontograma" />
                                     </f:facet>
-                                    <p:commandButton value="Ver Periodontograma" action="#{ConsultaPaciente.verPeriodontograma(pacientes.periodonto)}" class="btn btn-info"></p:commandButton>
+                                    <p:commandButton value="Ver Periodontograma" action="#{ConsultaPaciente.verPeriodontograma(pacientes.periodontograma,pacientes.fecha)}" class="btn btn-info"></p:commandButton>
                                 </p:column>
 
                             </p:dataTable>

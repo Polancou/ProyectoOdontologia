@@ -26,7 +26,6 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import sys.bean.Expi.BeanDatosPersonales;
 import sys.model.pacientes.Paciente;
 
 /**
@@ -140,11 +139,12 @@ public class beanReportes implements Serializable {
         FacesContext.getCurrentInstance().responseComplete();
     }
 
-    public void consentimientoPDF(String paciente) throws SQLException, IOException, JRException  {
+      public void consentimientoPDF(String paciente,String maestro) throws SQLException, IOException, JRException  {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         String nombreAlum = (String) session.getAttribute("nombreCompletoAlumno");
         Map<String, Object> parametros = new HashMap<String, Object>();
-        String profe = BeanDatosPersonales.profe;
+        
+        String profe = maestro;
         parametros.put("paciente", paciente);
         parametros.put("maestro", profe);
         parametros.put("alumno", nombreAlum);

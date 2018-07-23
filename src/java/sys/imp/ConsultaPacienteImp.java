@@ -11,8 +11,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import sys.bean.Expi.BeanConsulta;
-import sys.bean.Expi.BeanControlPlaca;
-import sys.bean.Expi.BeanPeri;
 import sys.dao.daoConsultaPaciente;
 import sys.model.pacientes.Consultas;
 import sys.model.pacientes.ControlPlaca;
@@ -31,7 +29,7 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
         List<Paciente> listPacientes = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from Paciente as p where p.folio= '" + paciente.getFolio() + "'";
+        String hql = "from Paciente as p where p.folio like '%" + paciente.getFolio() + "%'";
         try {
             listPacientes = session.createQuery(hql).list();
             transaction.commit();
@@ -48,7 +46,7 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
         List<Paciente> listPacientes = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        String hql = "from Paciente as p where p.nombre= '" + paciente.getNombre() + "'";
+        String hql = "from Paciente as p where p.nombre like '%" + paciente.getNombre() + "%'";
         try {
             listPacientes = session.createQuery(hql).list();
             transaction.commit();
@@ -62,32 +60,32 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
     }
 
     @Override
-    public boolean insertaConsulta() {
+    public boolean insertaConsulta(ControlPlaca control, Periodontograma periodonto, Paciente paciente) {
         boolean inserto = false;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
-            ControlPlaca control = BeanControlPlaca.control;
-            int idPaciente = BeanConsulta.folio;
+            int idPaciente = paciente.getId();
             control.setEstado("subsecuente");
             System.out.println(control.getDientes());
             control.setDientes(control.getDientes());
-            control.setPaciente(idPaciente);
+            control.setPaciente(paciente);
             session.save(control);
 
-            Periodontograma periodonto = BeanPeri.periodonto;
             periodonto.setEstado("subsecuente");
-            periodonto.setPaciente(idPaciente);
+            periodonto.setPaciente(paciente);
+            System.out.println(control.getDientes());
             periodonto.setDientes(periodonto.getDientes());
             session.save(periodonto);
 
             Consultas consultas = new Consultas();
-            consultas.setControlPlaca(control.getId());
+            consultas.setControlPlaca(control);
+            consultas.setFolio(paciente.getFolio());
             consultas.setFecha(new Date());
-            consultas.setPaciente(idPaciente);
-            consultas.setPeriodonto(periodonto.getId());
+            consultas.setPaciente(paciente);
+            consultas.setPeriodontograma(periodonto);
             session.save(consultas);
 
             session.getTransaction().commit();
@@ -109,12 +107,12 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
     }
 
     @Override
-    public List<Consultas> verConsultas() {
+    public List<Consultas> verConsultas(int paciente) {
         List<Consultas> listaConsultas = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        int idPaciente = BeanConsulta.folio;
-        String hql = "from Consultas where paciente= " + idPaciente;
+        int idPaciente = paciente;
+        String hql = "from Consultas as c where c.paciente= " + idPaciente;
         try {
             listaConsultas = session.createQuery(hql).list();
             transaction.commit();
@@ -127,18 +125,18 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
     }
 
     @Override
-    public String verPlaca() {
-        int id = BeanConsulta.controlPlaca;
+    public String verPlaca(ControlPlaca controlPlaca) {
+        int id = controlPlaca.getId();
         String cadena = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
             ControlPlaca control = (ControlPlaca) session.get(ControlPlaca.class, id);
             cadena = control.getDientes();
-            BeanControlPlaca.control.setNumDientes(control.getNumDientes());
-            BeanControlPlaca.control.setNumSuperficies(control.getNumSuperficies());
-            BeanControlPlaca.control.setSuperficiesPlacas(control.getSuperficiesPlacas());
-            BeanControlPlaca.control.setExtensionPlaca(control.getExtensionPlaca());
+            controlPlaca.setNumDientes(control.getNumDientes());
+            controlPlaca.setNumSuperficies(control.getNumSuperficies());
+            controlPlaca.setSuperficiesPlaca(control.getSuperficiesPlaca());
+            controlPlaca.setExtensionPlaca(control.getExtensionPlaca());
             System.out.println(cadena);
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
@@ -154,8 +152,9 @@ public class ConsultaPacienteImp implements daoConsultaPaciente {
     }
 
     @Override
-    public String verPeriodontograma() {
-        int id = BeanConsulta.periodontograma;
+    public String verPeriodontograma(Periodontograma periodontograma) {
+     
+        int id = periodontograma.getId();
         String cadena = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

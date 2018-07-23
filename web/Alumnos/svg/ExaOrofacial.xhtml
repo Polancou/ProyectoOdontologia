@@ -12,29 +12,29 @@
                 <h1>Paciente</h1>
                 <p:panelGrid columns="2" layout="grid">
                     <p:outputLabel value="Nombre" />
-                    <p:inputText  id="NombrePaciente" value="#{DatosPersonales.paciente.nombre}" />
+                    <p:inputText  id="NombrePaciente" value="#{BeanNuevoPaciente.paciente.nombre}" />
                     <p:outputLabel value="Folio" />
-                    <p:inputText id="Folio" value="#{DatosPersonales.paciente.folio}"/>
+                    <p:inputText id="Folio" value="#{BeanNuevoPaciente.paciente.folio}"/>
                 </p:panelGrid>
             </p:panel>
             <p:panel>
                 <h1>Cara</h1>
                 <p:panelGrid columns="2" layout="grid">
                     <p:outputLabel value="Forma de la cara"/>
-                    <p:selectOneRadio id="forma" value="#{ExamenOrofacial.examenOrofacial.caraForma}" layout="pageDirection">
+                    <p:selectOneRadio id="forma" value="#{BeanNuevoPaciente.examenOrofacial.caraForma}" layout="pageDirection">
                         <f:selectItem itemLabel="Ovoide" itemValue="Ovoide" />
                         <f:selectItem itemLabel="Cuadrada" itemValue="Cuadrada" />
                         <f:selectItem itemLabel="Alargada" itemValue="Alargada" />
                     </p:selectOneRadio>
                     <p:outputLabel value="Labios: " />
-                    <p:selectOneRadio id="labios" value="#{ExamenOrofacial.examenOrofacial.caraLabios}" layout="pageDirection">
+                    <p:selectOneRadio id="labios" value="#{BeanNuevoPaciente.examenOrofacial.caraLabios}" layout="pageDirection">
                         <f:selectItem itemLabel="Activos" itemValue="Activos" />
                         <f:selectItem itemLabel="Largos" itemValue="Largos" />
                         <f:selectItem itemLabel="Medianos" itemValue="Medianos" />
                         <f:selectItem itemLabel="Cortos" itemValue="Cortos" />
                     </p:selectOneRadio>
                     <p:outputLabel value="Bordes Bermellon: " />
-                    <p:selectOneRadio id="bordesbermellon" value="#{ExamenOrofacial.examenOrofacial.bordesBermellon}" layout="pageDirection">
+                    <p:selectOneRadio id="bordesbermellon" value="#{BeanNuevoPaciente.examenOrofacial.bordesBermellon}" layout="pageDirection">
                         <f:selectItem itemLabel="Visibles" itemValue="Visibles" />
                         <f:selectItem itemLabel="No visibles" itemValue="No visibles" />
                     </p:selectOneRadio>

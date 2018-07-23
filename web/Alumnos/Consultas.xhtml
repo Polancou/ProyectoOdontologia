@@ -19,7 +19,9 @@
                                 <h:form id="formBusquedaPacienteFolio">
                                     <p:outputLabel value="Folio  "/><p:spacer width="10" height="10"/>
                                     <p:inputText id="folio" value="#{ConsultaPaciente.paciente.folio}"
-                                                 required="true" requiredMessage="Ingrese el folio" />
+                                                 required="true" requiredMessage="Ingrese el folio">
+                                    <p:ajax event="keyup" listener="#{ConsultaPaciente.folioPaciente()}"  update=":formMostrarMaterias:tablaMostrarMaestros"></p:ajax>
+                                    </p:inputText>
 
                                     <p:spacer width="10" height="10"/>
 
@@ -30,7 +32,10 @@
                                 <h:form id="formBusquedaPacienteNombre">
                                     <p:outputLabel value="Nombre completo(Apellidos y nombres)  "/><p:spacer width="10" height="10"/>
                                     <p:inputText id="nombre" value="#{ConsultaPaciente.paciente.nombre}"
-                                                 required="true" requiredMessage="Ingrese el nombre" />
+                                                 required="true" requiredMessage="Ingrese el nombre">
+                                          <p:ajax event="keyup" listener="#{ConsultaPaciente.nombresPaciente()}"  update=":formMostrarMaterias:tablaMostrarMaestros"></p:ajax>
+
+                                    </p:inputText>
 
                                     <p:spacer width="10" height="10"/>
 
@@ -78,11 +83,11 @@
                                 </p:column>
 
                                 <p:column headerText="Consulta">
-                                    <p:commandButton value="Nueva consulta" action="#{ConsultaPaciente.nuevaConsulta(master.id)}" class="btn btn-info"></p:commandButton>
+                                    <p:commandButton value="Nueva consulta" action="#{ConsultaPaciente.nuevaConsulta(master.id,master.folio,master.nombre)}" class="btn btn-info"></p:commandButton>
                                 </p:column>
                                 
                                 <p:column headerText="Expediente">
-                                    <p:commandButton value="Ver historial" action="#{ConsultaPaciente.verHistorial(master.id)}" class="btn btn-info"></p:commandButton>
+                                    <p:commandButton value="Ver historial" action="#{ConsultaPaciente.verHistorial(master.id,master.nombre,master.folio)}" class="btn btn-info"></p:commandButton>
                                 </p:column>
                             </p:dataTable>
                         </h:form>

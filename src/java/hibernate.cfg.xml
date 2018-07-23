@@ -60,20 +60,20 @@ Contributor(s):
     <mapping resource="sys/model/ListaAlumnos.hbm.xml"/>
     <mapping resource="sys/model/BitacoraRecibos.hbm.xml"/>
     <mapping class="sys.model.SesionTable"/>
-    <mapping class="sys.model.pacientes.AnalisisOclusion"/>
-    <mapping class="sys.model.pacientes.Atm"/>
-    <mapping class="sys.model.pacientes.DireccionPaciente"/>
-    <mapping class="sys.model.pacientes.ExamenOral"/>
-    <mapping class="sys.model.pacientes.ExamenOrofacial"/>
-    <mapping class="sys.model.pacientes.HallazgosRadiograficos"/>
-    <mapping class="sys.model.pacientes.MedicoPaciente"/>
-    <mapping class="sys.model.pacientes.Paciente"/>
-    <mapping class="sys.model.pacientes.PlanTratamiento"/>
-    <mapping class="sys.model.pacientes.PreguntasPaciente"/>
-    <mapping class="sys.model.pacientes.TrabajoPaciente"/>
-    <mapping class="sys.model.pacientes.Tratamientos"/>
-    <mapping class="sys.model.pacientes.ControlPlaca"/>
-    <mapping class="sys.model.pacientes.Periodontograma"/>
-    <mapping class="sys.model.pacientes.Consultas"/>
+    <mapping resource="sys/model/pacientes/Paciente.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/Periodontograma.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/TrabajoPaciente.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/Atm.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/PreguntasPaciente.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/ControlPlaca.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/ExamenOrofacial.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/MedicoPaciente.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/ExamenOral.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/Tratamientos.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/PlanTratamiento.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/HallazgosRadiograficos.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/Consultas.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/DireccionPaciente.hbm.xml"/>
+    <mapping resource="sys/model/pacientes/AnalisisOclusion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

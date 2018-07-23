@@ -6,9 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
-
+<body>
         <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
 
             <ui:define name="content">
@@ -21,7 +19,7 @@
                                 window.onload = function() {
                                     var standard = "/FdO-3.0/pages/javax.faces.resource/";
                                     var caja = document.getElementById('j_idt61:Odontograma');
-                                    var textobase = "#{beanPeri.periodontograma.dientes}";
+                                    var textobase = "#{ConsultaPaciente.dienteBDperi}";
                                     var arreglobase = textobase.split(",");
                                     var seteadiente18 = document.getElementsByClassName("dienteimg");
                                     var qwe = [];
@@ -57,26 +55,35 @@
                                     max-width: 50px;
                                 }
                             </style>
-                            <p:remoteCommand name="Enviaimg" action="#{beanPeri.Obtienetodo}" process="@this"/>
-                        <p:remoteCommand name="Mensajes" action="#{beanPeri.info}" process="@this"/>
-                        
+                            <p:spacer/>
+                             <h:outputScript name="js/noupdate.js"/>
+                             <h:panelGrid class="panelGridCenter">
+                                <p:commandButton value="Volver al historial" action="#{ConsultaPaciente.verHistorial(ConsultaPaciente.verperiodontograma.paciente.id,ConsultaPaciente.verperiodontograma.paciente.nombre,ConsultaPaciente.verperiodontograma.paciente.folio)}" class="btn btn-info"></p:commandButton>
+
+                             </h:panelGrid>
+                             <p:spacer/>
+                            <p:remoteCommand name="Enviaimg" action="#{ConsultaPaciente.Obtienetodo}" process="@this"/>
+                        <p:remoteCommand name="Mensajes" action="#{ConsultaPaciente.info}" process="@this"/>
+                        <h4>Paciente: <b>#{ConsultaPaciente.verperiodontograma.paciente.nombre}</b></h4>
+                        <h4>Fecha de consulta: <b>#{ConsultaPaciente.cuando}</b></h4>
                         <p:spacer/>
+                        
                         <p:panelGrid class="panelGridCenter" layout="grid" columns="1">
                             
                             <h:panelGrid class="panelGridCenter" cellspacing="5">
                                 <p:spacer/>
                                 <p:panelGrid columns="2" class="panelGridCenter">
 
-                                    <p:outputLabel value="No estÃ¡ el diente"/>
+                                    <p:outputLabel value="No está el diente"/>
                                     <p:graphicImage name="svg/tache.png" class="imgpeque"/>
 
-                                    <p:outputLabel value="ObturaciÃ³n"/>
+                                    <p:outputLabel value="Obturación"/>
                                     <p:graphicImage name="svg/azul.png" class="imgpeque"/>
 
                                     <p:outputLabel value="Caries"/>
                                     <p:graphicImage name="svg/rojo.png" class="imgpeque"/>
 
-                                    <p:outputLabel value="ObturaciÃ³n con caries"/>
+                                    <p:outputLabel value="Obturación con caries"/>
                                     <p:graphicImage name="svg/amarillo.png" class="imgpeque"/>
 
                                 </p:panelGrid>
@@ -214,13 +221,10 @@
 
                         </section>
                     </div>
-                    
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
-    </body>
+</body>
 </html>
 
 

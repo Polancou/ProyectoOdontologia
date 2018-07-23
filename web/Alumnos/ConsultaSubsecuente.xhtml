@@ -4,24 +4,29 @@
 
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
         <ui:composition template="./../Template/VistasMarcos/PlantillaAlumnos.xhtml">
             <ui:define name="content">
+                 <h:outputScript name="js/noupdate.js"/>
                 <div class="content-wrapper">
                     <!-- Main content -->
                     <section class="content">
                         <h:form>
+                            <h:panelGrid class="panelGridCenter">
+                                    <p:commandButton value="Regresar a la búsqueda" action="Consultas.xhtml" />
+                                </h:panelGrid>
                             <p:growl id="growl" sticky="true" showDetail="true"/>
                             <p:wizard>
                                 
                                 <p:tab id="odonto" title="Control de placa">
-                                    <ui:include src="svg/ControlPlaca.xhtml"/>
+                                    <ui:include src="ControlPlaca_1.xhtml"/>
                                 </p:tab>
 
                                 <p:tab id="periodonto" title="Periodontograma">
-                                    <ui:include src="svg/Periodontograma.xhtml"/>
+                                    <ui:include src="Periodontograma_1.xhtml"/>
                                       <p:spacer/><p:spacer/>
                                       <h:panelGrid class="panelGridCenter">
 

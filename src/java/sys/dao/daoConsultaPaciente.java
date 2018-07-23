@@ -7,7 +7,9 @@ package sys.dao;
 
 import java.util.List;
 import sys.model.pacientes.Consultas;
+import sys.model.pacientes.ControlPlaca;
 import sys.model.pacientes.Paciente;
+import sys.model.pacientes.Periodontograma;
 
 /**
  *
@@ -19,12 +21,13 @@ public interface daoConsultaPaciente {
     
     public List<Paciente> verNombresPaciente (Paciente paciente);
     
-    public boolean insertaConsulta();
+    public boolean insertaConsulta(ControlPlaca control, Periodontograma periodonto, Paciente paciente);
     
-    public List <Consultas> verConsultas();
+    public List <Consultas> verConsultas(int paciente);
     
-    public String verPlaca();
+    public String verPlaca(ControlPlaca control);
     
-    public String verPeriodontograma();
+    public String verPeriodontograma(Periodontograma periodontograma);
+    
     
 }

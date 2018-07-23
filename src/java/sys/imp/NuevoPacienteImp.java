@@ -15,16 +15,10 @@ import net.sf.jasperreports.engine.JRException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import sys.bean.Bita.beanReportes;
-import sys.bean.Expi.BeanControlPlaca;
-import sys.bean.Expi.BeanCuestionario;
-import static sys.bean.Expi.BeanCuestionario.alergias;
-import static sys.bean.Expi.BeanCuestionario.selectedConsoles;
-import sys.bean.Expi.BeanDatosPersonales;
-import sys.bean.Expi.BeanExaOrofacial;
-import sys.bean.Expi.BeanPeri;
 import sys.dao.daoNuevoPaciente;
 import sys.model.pacientes.AnalisisOclusion;
 import sys.model.pacientes.Atm;
+import sys.model.pacientes.Consultas;
 import sys.model.pacientes.ControlPlaca;
 import sys.model.pacientes.DireccionPaciente;
 import sys.model.pacientes.ExamenOral;
@@ -44,73 +38,66 @@ import sys.util.HibernateUtil;
 public class NuevoPacienteImp implements daoNuevoPaciente {
 
     @Override
-    public String insertarNuevoPaciente() {
-        String inserto = "";
+    public boolean insertarNuevoPaciente(DireccionPaciente direccion,MedicoPaciente medico,TrabajoPaciente trabajo, Paciente paciente, ControlPlaca control,Periodontograma periodonto,ExamenOral examenoral, ExamenOrofacial examen,Atm atm,AnalisisOclusion analisis,HallazgosRadiograficos hallazgos,PreguntasPaciente preguntas) {
+        boolean inserto = false;
         Session session = null;
         try {
-            //primera pestaÃ±a del paciente
-            DireccionPaciente direccion = BeanDatosPersonales.dirreccionPaciente;
-            MedicoPaciente medico = BeanDatosPersonales.medico;
-            TrabajoPaciente trabajo = BeanDatosPersonales.trabajoPaciente;
-            Paciente paciente = BeanDatosPersonales.paciente;
+            //primera pestaña del paciente
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(direccion);
             session.save(medico);
             session.save(trabajo);
-            paciente.setDireccionPaciente(direccion.getId());
-            paciente.setMedicoPaciente(medico.getId());
-            paciente.setTrabajoPaciente(trabajo.getId());
+            paciente.setDireccionPaciente(direccion);
+            paciente.setMedicoPaciente(medico);
+            paciente.setTrabajoPaciente(trabajo);
             paciente.setFechaRegistro(new Date());
             session.save(paciente);
             
-            //segunda pestaÃ±a del cuestionario
-            PreguntasPaciente preguntas = BeanCuestionario.preguntasPaciente;
-            preguntas.setPadecimientos(Arrays.toString(selectedConsoles));
-            preguntas.setAlergiasMedicamentos(Arrays.toString(alergias));
-            preguntas.setPaciente(paciente.getId());
+            //segunda pestaña del cuestionario
+            preguntas.setAlergiasMedicamentos(preguntas.getAlergiasMedicamentos());
+            preguntas.setPadecimientos(preguntas.getPadecimientos());
+            preguntas.setPaciente(paciente);
             session.save(preguntas);
             
-            //tercera pestaÃ±a de examenes oral y orofacial
-            ExamenOral examenoral= BeanExaOrofacial.examenOral;
-            ExamenOrofacial examen = BeanExaOrofacial.examenOrofacial;
-            Atm atm = BeanExaOrofacial.atm;
-            AnalisisOclusion analisis = BeanExaOrofacial.analisisOclusion;
-            HallazgosRadiograficos hallazgos = BeanExaOrofacial.hallazgosRadiograficos;
+            //tercera pestaña de examenes oral y orofacial
             session.save(examenoral);
             session.save(atm);
             session.save(analisis);
             session.save(hallazgos);
-            examen.setAtm(atm.getId());
-            examen.setAnalisisOclusion(analisis.getId());
-            examen.setHallazgosRadiograficos(hallazgos.getId());
-            examen.setExamenOral(examenoral.getId());
-            examen.setPaciente(paciente.getId());
+            examen.setAtm(atm);
+            examen.setAnalisisOclusion(analisis);
+            examen.setHallazgosRadiograficos(hallazgos);
+            examen.setExamenOral(examenoral);
+            examen.setPaciente(paciente);
             examen.setFecha(new Date());
             session.save(examen);
             
             //insertar la placa dentobacteriana
-            ControlPlaca control = BeanControlPlaca.control;
             control.setEstado("nuevo");
             System.out.println(control.getDientes());
             control.setDientes(control.getDientes());
-            control.setPaciente(paciente.getId());
+            control.setPaciente(paciente);
             session.save(control);
             
             
             //insertar tabla odontograma
-            Periodontograma periodonto = BeanPeri.periodonto;
             periodonto.setEstado("nuevo");
-            periodonto.setPaciente(paciente.getId());
+            periodonto.setPaciente(paciente);
             periodonto.setDientes(periodonto.getDientes());
             session.save(periodonto);
             
-            
+            Consultas primera = new Consultas();
+            primera.setFolio(paciente.getFolio());
+            primera.setPaciente(paciente);
+            primera.setControlPlaca(control);
+            primera.setPeriodontograma(periodonto);
+            primera.setFecha(new Date());
+            session.save(primera);
             
             session.getTransaction().commit();
+            inserto = true;
             
-            
-            inserto = paciente.getNombre();
         } catch (HibernateException e) {
             System.out.println(e.getMessage());
             session.getTransaction().rollback();
@@ -124,5 +111,6 @@ public class NuevoPacienteImp implements daoNuevoPaciente {
     
     
     }
+
 
 }

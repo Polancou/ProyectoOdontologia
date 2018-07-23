@@ -17,7 +17,7 @@
                             <script>
                                 window.onload = function() {
                                     var caja = document.getElementById('j_idt61:ControlPlaca');
-                                    var textobase = "#{controlPlaca.control.dientes}";
+                                    var textobase = "#{ConsultaPaciente.dienteBDcontrol}";
                                     var arreglobase = textobase.split(",");
                                     var seteadiente18 = document.getElementsByClassName("area");
                                     for (var i = 0; i &lt; seteadiente18.length; i++){
@@ -28,7 +28,10 @@
                                         }
                                     }
                                 };
+                                
+                              
                             </script>
+                                <h:outputScript name="js/noupdate.js"/>
                             <style>
                                 .iconos{
                                     height:25px;
@@ -41,31 +44,31 @@
                                     margin: 0 auto;
                                 }
                             </style>
-                            
-                                <p:panelGrid columns="2" layout="grid" class="panelGridCenter">
-                                    <p:outputLabel value="Total de dientes: "/>
-                                    <p:inputText id="Num_dientes" value="#{controlPlaca.control.numDientes}"/>
-
-                                    <p:outputLabel value="Total de superficies"/>
-                                    <p:inputText id="Num_superfices" value="#{controlPlaca.control.numSuperficies}"/>
-
-                                    <p:outputLabel value="NÃºmero de superficies con placa"/>
-                                    <p:inputText id="Superfices_placa" value="#{controlPlaca.control.superficiesPlacas}"/>
-
-                                    <p:outputLabel value="ExtensiÃ³n de placa"/>
-                                    <p:inputText id="Extension_placa" value="#{controlPlaca.control.extensionPlaca}"/>
-
-                                </p:panelGrid>
-                            
-                            
                             <p:spacer/>
+                            <h:panelGrid class="panelGridCenter">
+                               <p:commandButton value="Volver al historial" action="#{ConsultaPaciente.verHistorial(ConsultaPaciente.vercontrolPlaca.paciente.id,ConsultaPaciente.vercontrolPlaca.paciente.nombre,ConsultaPaciente.vercontrolPlaca.paciente.folio)}" class="btn btn-info"></p:commandButton>
+
+                            </h:panelGrid>
+
+                            <p:spacer/>
+                            <h4>Paciente: <b>#{ConsultaPaciente.vercontrolPlaca.paciente.nombre}</b></h4>
+                        <h4>Fecha de consulta: <b>#{ConsultaPaciente.cuando}</b></h4>
+                        <p:spacer/>
+                        <h4>Número de dientes: <b>#{ConsultaPaciente.vercontrolPlaca.numDientes}</b></h4>
+                        <h4>Número de superficies: <b>#{ConsultaPaciente.vercontrolPlaca.numSuperficies}</b></h4>
+                        <h4>Número de superficies con placa: <b>#{ConsultaPaciente.vercontrolPlaca.superficiesPlaca}</b></h4>
+                        <h4>Extensión de placa: <b>#{ConsultaPaciente.vercontrolPlaca.extensionPlaca}</b></h4>
+
+                            
+                        <p:spacer/>
                             <p:panel>
+                                
                                 <h:panelGrid class="panelGridCenter" cellspacing="5">
                                     <center>
-                                        <h4>SimbologÃ­a:</h4>
+                                        <h4>Simbologí­a:</h4>
                                     </center>
                                     <p:panelGrid columns="2" class="panelGridCenter">
-                                        <p:outputLabel value="No estÃ¡ el diente"/>
+                                        <p:outputLabel value="No está el diente"/>
                                         <p:graphicImage name="svg/gris.png" class="iconos"/>
                                         <p:outputLabel value="Placa"/>
                                         <p:graphicImage name="svg/rojo2.png" class="iconos"/>
@@ -680,6 +683,7 @@
                         </p:panel>
                         </section>
                     </div>
+               
                 </h:form>
             </ui:define>
         </ui:composition>

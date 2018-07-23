@@ -49,7 +49,7 @@
             function MuestraControl(boton) {
                 $( ".oculto" ).css( "display", "block" );
                 boton.setAttribute('style', 'display: none')
-                var textobase = "#{BeanNuevoPaciente.control.dientes}";
+                var textobase = "#{ConsultaPaciente.controlPlaca.dientes}";
                 var arreglobase = textobase.split(",");
                 var seteadiente18 = document.getElementsByClassName("area");
                 for (var i = 0; i &lt; seteadiente18.length; i++){
@@ -81,19 +81,23 @@
                display: none;
             }
         </style>
-        <p:remoteCommand name="Enviatodo" action="#{BeanNuevoPaciente.obtenerControlPlaca()}" process="@this"/>
+        <p:remoteCommand name="Enviatodo" action="#{ConsultaPaciente.obtenerControlPlaca()}" process="@this"/>
+        <h4>Número de folio: <b>#{ConsultaPaciente.paciente.folio}</b></h4>
+        <h4>Nueva consulta para: <b>#{ConsultaPaciente.paciente.nombre}</b></h4>
+
         <h:panelGrid columns="2" cellpadding="5" class="panelGridCenter">
+           
             <p:outputLabel value="Total de dientes: "/>
-            <p:inputText id="Num_dientes" value="#{BeanNuevoPaciente.control.numDientes}"/>
+            <p:inputText id="Num_dientes" value="#{ConsultaPaciente.controlPlaca.numDientes}"/>
             <p:spacer/><p:spacer/>
             <p:outputLabel value="Total de superficies"/>
-            <p:inputText id="Num_superfices" value="#{BeanNuevoPaciente.control.numSuperficies}"/>
+            <p:inputText id="Num_superfices" value="#{ConsultaPaciente.controlPlaca.numSuperficies}"/>
             <p:spacer/><p:spacer/>
             <p:outputLabel value="Número de superficies con placa"/>
-            <p:inputText id="Superfices_placa" value="#{BeanNuevoPaciente.control.superficiesPlaca}"/>
+            <p:inputText id="Superfices_placa" value="#{ConsultaPaciente.controlPlaca.superficiesPlaca}"/>
             <p:spacer/><p:spacer/>  
             <p:outputLabel value="Extensión de placa"/>
-            <p:inputText id="Extension_placa" value="#{BeanNuevoPaciente.control.extensionPlaca}"/>
+            <p:inputText id="Extension_placa" value="#{ConsultaPaciente.controlPlaca.extensionPlaca}"/>
 
         </h:panelGrid>
         <p:spacer/>
@@ -111,7 +115,7 @@
                 <center>
                     <h4>Instrucciones:</h4>
                 </center>
-                <p:outputLabel value="1) Da click en el botón ''Mostrar Control de Placa'' para iniciar."/>
+               <p:outputLabel value="1) Da click en el botón ''Mostrar Control de Placa'' para iniciar."/>
                 <p:outputLabel value="2) Da click en el número de diente para indicar si está o no está el diente."/>
                 <p:outputLabel value="3) Selecciona las zonas con placa."/>
                 <p:outputLabel value="4) Al finalizar, de click en el botón ''Siguiente'' para continuar."/>
@@ -717,6 +721,11 @@
                                 <h:outputLabel value="38" onclick="nodiente(38)"/>
                             </p:panelGrid>
                          <p:spacer/>
+<!--                        <p:panelGrid class="panelGridCenter">
+                            <h:panelGrid class="panelGridCenter">
+                                <button id="guardarcontrol" name="guardarcontrol" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="SaveControl()" type="button" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Guardar Control de Placa</span></button>
+                            </h:panelGrid>
+                        </p:panelGrid>-->
                     </p:panelGrid>
                    
                     
